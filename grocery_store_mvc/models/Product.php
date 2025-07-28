@@ -63,15 +63,30 @@ class Product
     // Tạo sản phẩm mới
     public function create($data)
     {
-        $stmt = $this->db->prepare("INSERT INTO `products` (name, category, details, price, image) VALUES (?, ?, ?, ?, ?)");
-        return $stmt->execute([$data['name'], $data['category'], $data['details'], $data['price'], $data['image']]);
+        $stmt = $this->db->prepare("INSERT INTO `products` (name, category, details, price, image, quantity) VALUES (?, ?, ?, ?, ?, ?)");
+        return $stmt->execute([
+            $data['name'],
+            $data['category'],
+            $data['details'],
+            $data['price'],
+            $data['image'],
+            isset($data['quantity']) ? $data['quantity'] : 0
+        ]);
     }
 
     // Cập nhật thông tin sản phẩm
     public function update($id, $data)
     {
-        $stmt = $this->db->prepare("UPDATE `products` SET name = ?, category = ?, details = ?, price = ?, image = ? WHERE id = ?");
-        return $stmt->execute([$data['name'], $data['category'], $data['details'], $data['price'], $data['image'], $id]);
+        $stmt = $this->db->prepare("UPDATE `products` SET name = ?, category = ?, details = ?, price = ?, image = ?, quantity = ? WHERE id = ?");
+        return $stmt->execute([
+            $data['name'],
+            $data['category'],
+            $data['details'],
+            $data['price'],
+            $data['image'],
+            isset($data['quantity']) ? $data['quantity'] : 0,
+            $id
+        ]);
     }
 
     // Xóa sản phẩm

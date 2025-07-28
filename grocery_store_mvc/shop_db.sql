@@ -81,7 +81,8 @@ CREATE TABLE `products` (
   `category` varchar(20) NOT NULL,
   `details` varchar(500) NOT NULL,
   `price` int(100) NOT NULL,
-  `image` varchar(100) NOT NULL
+  `image` varchar(100) NOT NULL,
+  `quantity` int(100) NOT NULL DEFAULT 0
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- --------------------------------------------------------
 --
@@ -193,6 +194,14 @@ INSERT INTO users (id, name, email, password, user_type, image)
 VALUES (
     56,
     'Admin',
+    'admin3@gmail.com',
+    'e10adc3949ba59abbe56e057f20f883e',
+    'admin',
+    'default.jpg'
+  ),
+  (
+    57,
+    'Admin',
     'admin@gmail.com',
     'e10adc3949ba59abbe56e057f20f883e',
     'admin',
@@ -200,16 +209,16 @@ VALUES (
   ),
   (
     66,
-    'John Doe',
-    'user@gmail.com',
+    'haha',
+    'haha@gmail.com',
     'e10adc3949ba59abbe56e057f20f883e',
     'user',
     'default.jpg'
   ),
   (
     77,
-    'Jane Smith',
-    'jane@gmail.com',
+    'haha2',
+    'haha2@gmail.com',
     'e10adc3949ba59abbe56e057f20f883e',
     'user',
     'default.jpg'
@@ -225,7 +234,8 @@ INSERT INTO `products` (
     `category`,
     `details`,
     `price`,
-    `image`
+    `image`,
+    `quantity`
   )
 VALUES (
     1,
@@ -233,7 +243,8 @@ VALUES (
     'fruits',
     'Sweet and crispy red apples from local farms',
     3,
-    'apple.png'
+    'apple.png',
+    100
   ),
   (
     2,
@@ -241,7 +252,8 @@ VALUES (
     'fruits',
     'Fresh yellow bananas rich in potassium',
     2,
-    'banana.png'
+    'banana.png',
+    120
   ),
   (
     3,
@@ -249,7 +261,8 @@ VALUES (
     'vegitables',
     'Fresh organic broccoli packed with nutrients',
     4,
-    'broccoli.png'
+    'broccoli.png',
+    80
   ),
   (
     4,
@@ -257,7 +270,8 @@ VALUES (
     'meat',
     'Premium quality fresh chicken meat',
     8,
-    'chicken.png'
+    'chicken.png',
+    50
   ),
   (
     5,
@@ -265,7 +279,8 @@ VALUES (
     'fish',
     'Fresh salmon fish rich in omega-3',
     12,
-    'salmon fish.png'
+    'salmon fish.png',
+    60
   ),
   (
     6,
@@ -273,7 +288,8 @@ VALUES (
     'vegitables',
     'Juicy red tomatoes perfect for cooking',
     3,
-    'tomato.png'
+    'tomato.png',
+    90
   ),
   (
     7,
@@ -281,7 +297,8 @@ VALUES (
     'vegitables',
     'Fresh carrots loaded with vitamin A',
     2,
-    'carrot.png'
+    'carrot.png',
+    70
   ),
   (
     8,
@@ -289,7 +306,8 @@ VALUES (
     'fruits',
     'Sweet seedless green grapes',
     5,
-    'green grapes.png'
+    'green grapes.png',
+    110
   ),
   (
     9,
@@ -297,7 +315,8 @@ VALUES (
     'meat',
     'Premium quality beef steak',
     15,
-    'beaf steak.png'
+    'beaf steak.png',
+    40
   ),
   (
     10,
@@ -305,7 +324,8 @@ VALUES (
     'fruits',
     'Sweet and juicy strawberries',
     6,
-    'strawberry.png'
+    'strawberry.png',
+    95
   );
 COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */

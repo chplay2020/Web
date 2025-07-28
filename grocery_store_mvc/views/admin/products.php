@@ -37,6 +37,7 @@
             </div>
             <div class="inputBox">
                <input type="number" min="0" name="price" class="box" required placeholder="enter product price">
+               <input type="number" min="0" name="quantity" class="box" required placeholder="enter product quantity">
                <input type="file" name="image" required class="box" accept="image/jpg, image/jpeg, image/png">
             </div>
          </div>
@@ -67,10 +68,11 @@
                   <!-- Tên sản phẩm -->
                   <div class="name"><?= htmlspecialchars($product['name']); ?></div>
                   <!-- Danh mục sản phẩm -->
-                  <div class="cat"><?= htmlspecialchars($product['category']); ?></div>
+                  <div class="cat">Category: <?= htmlspecialchars($product['category']); ?></div>
+                  <!-- Số lượng tồn kho, hiển thị đơn giản như tên sản phẩm -->
+                  <div class="quantity">Stock: <b><?= (int)$product['quantity']; ?></b></div>
                   <!-- Mô tả chi tiết sản phẩm -->
                   <div class="details"><?= htmlspecialchars($product['details']); ?></div>
-                  
                   <!-- Các nút hành động: cập nhật và xóa -->
                   <div class="flex-btn">
                      <a href="/admin_update_product?update=<?= $product['id']; ?>" class="option-btn">update</a>

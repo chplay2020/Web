@@ -32,6 +32,7 @@
 
             <input type="text" name="name" placeholder="enter product name" required class="box" value="<?= htmlspecialchars($product['name']); ?>">
             <input type="number" name="price" min="0" placeholder="enter product price" required class="box" value="<?= htmlspecialchars($product['price']); ?>">
+            <input type="number" name="quantity" min="0" placeholder="enter product quantity" required class="box" value="<?= (int)$product['quantity']; ?>">
 
             <select name="category" class="box" required>
                <option selected><?= htmlspecialchars($product['category']); ?></option>

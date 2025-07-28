@@ -52,19 +52,19 @@
          <div class="box">
             <h3><?= $regularUserCount; ?></h3>
             <p>total users</p>
-            <a href="admin_users.php" class="btn">see accounts</a>
+            <a href="/admin_users?type=user" class="btn">See Accounts</a>
          </div>
 
          <div class="box">
             <h3><?= $adminCount; ?></h3>
             <p>total admins</p>
-            <a href="admin_users.php" class="btn">see accounts</a>
+            <a href="/admin_users?type=admin" class="btn">See Accounts</a>
          </div>
 
          <div class="box">
             <h3><?= $userCount; ?></h3>
             <p>total accounts</p>
-            <a href="admin_users.php" class="btn">see accounts</a>
+            <a href="/admin_users?type=all" class="btn">See Accounts</a>
          </div>
 
          <div class="box">

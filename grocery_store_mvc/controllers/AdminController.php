@@ -37,7 +37,7 @@ class AdminController extends Controller
         // Lấy thống kê
         $totalPendings = $this->orderModel->getTotalPendingAmount();
         $totalCompleted = $this->orderModel->getTotalCompletedAmount();
-        $orderCount = $this->orderModel->getOrderCount();
+        $orderCount = count($this->orderModel->getByStatus('pending'));
         $productCount = count($this->productModel->getAll());
         $userCount = count($this->userModel->getAll());
         $adminCount = 0;
@@ -127,7 +127,8 @@ class AdminController extends Controller
             // Sau khi xóa, sẽ reload trang với thông báo
         }
 
-        $orders = $this->orderModel->getAll();
+        // Chỉ lấy đơn hàng chưa hoàn thành (pending)
+        $orders = $this->orderModel->getByStatus('pending');
 
         $this->view('admin/orders', [
             'orders' => $orders,
@@ -146,8 +147,20 @@ class AdminController extends Controller
             $this->redirect('admin_users');
         }
 
-        $users = $this->userModel->getAll();
-
+        $type = $_GET['type'] ?? 'all';
+        $allUsers = $this->userModel->getAll();
+        $users = [];
+        if ($type === 'user') {
+            foreach ($allUsers as $u) {
+                if ($u['user_type'] === 'user') $users[] = $u;
+            }
+        } elseif ($type === 'admin') {
+            foreach ($allUsers as $u) {
+                if ($u['user_type'] === 'admin') $users[] = $u;
+            }
+        } else {
+            $users = $allUsers;
+        }
         $this->view('admin/users', [
             'users' => $users,
             'adminId' => $adminId
@@ -241,13 +254,15 @@ class AdminController extends Controller
             }
         }
 
+        $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 0;
         // Tạo sản phẩm mới
         $productData = [
             'name' => $name,
             'category' => $category,
             'details' => $details,
             'price' => $price,
-            'image' => $image
+            'image' => $image,
+            'quantity' => $quantity
         ];
 
         if ($this->productModel->create($productData)) {
@@ -294,13 +309,15 @@ class AdminController extends Controller
         $imageFolder = 'uploaded_img/' . $image;
         $oldImage = $_POST['old_image'];
 
+        $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 0;
         // Cập nhật thông tin sản phẩm
         $productData = [
             'name' => $name,
             'category' => $category,
             'details' => $details,
             'price' => $price,
-            'image' => $oldImage // Giữ ảnh cũ nếu không upload mới
+            'image' => $oldImage, // Giữ ảnh cũ nếu không upload mới
+            'quantity' => $quantity
         ];
 
         if (!empty($image)) {

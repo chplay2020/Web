@@ -42,13 +42,18 @@
                   <a href="view_page.php?pid=<?= $product['id']; ?>" class="fas fa-eye"></a>
                   <img src="uploaded_img/<?= $product['image']; ?>" alt="">
                   <div class="name"><?= $product['name']; ?></div>
-                  <input type="hidden" name="pid" value="<?= $product['id']; ?>">
-                  <input type="hidden" name="p_name" value="<?= $product['name']; ?>">
-                  <input type="hidden" name="p_price" value="<?= $product['price']; ?>">
-                  <input type="hidden" name="p_image" value="<?= $product['image']; ?>">
-                  <input type="number" min="1" value="1" name="p_qty" class="qty">
-                  <input type="submit" value="add to wishlist" class="option-btn" name="add_to_wishlist">
-                  <input type="submit" value="add to cart" class="btn" name="add_to_cart">
+                  <div class="details">Description: <?= htmlspecialchars($product['details']); ?></div>
+                  <?php if ((int)$product['quantity'] > 0): ?>
+                     <input type="hidden" name="pid" value="<?= $product['id']; ?>">
+                     <input type="hidden" name="p_name" value="<?= $product['name']; ?>">
+                     <input type="hidden" name="p_price" value="<?= $product['price']; ?>">
+                     <input type="hidden" name="p_image" value="<?= $product['image']; ?>">
+                     <input type="number" min="1" max="<?= (int)$product['quantity']; ?>" value="1" name="p_qty" class="qty">
+                     <input type="submit" value="add to wishlist" class="option-btn" name="add_to_wishlist">
+                     <input type="submit" value="add to cart" class="btn" name="add_to_cart">
+                  <?php else: ?>
+                     <div class="out-of-stock" style="color:red;font-weight:bold;">Out of stock</div>
+                  <?php endif; ?>
                </form>
          <?php
             }

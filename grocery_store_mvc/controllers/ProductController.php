@@ -174,7 +174,17 @@ class ProductController extends Controller
         $p_name = $this->sanitize($_POST['p_name']);
         $p_price = $this->sanitize($_POST['p_price']);
         $p_image = $this->sanitize($_POST['p_image']);
-        $p_qty = $this->sanitize($_POST['p_qty']);
+        $p_qty = (int)$this->sanitize($_POST['p_qty']);
+
+        // Lấy thông tin sản phẩm để kiểm tra tồn kho
+        $product = $this->productModel->getById($pid);
+        if (!$product) {
+            return ['product not found!'];
+        }
+        $currentQty = (int)$product['quantity'];
+        if ($currentQty < $p_qty || $currentQty <= 0) {
+            return ['not enough stock!'];
+        }
 
         if ($this->cartModel->isInCart($userId, $p_name)) {
             return ['already added to cart!'];
@@ -182,7 +192,7 @@ class ProductController extends Controller
             if ($this->wishlistModel->isInWishlist($userId, $p_name)) {
                 $this->wishlistModel->removeByProduct($userId, $p_name);
             }
-
+            // KHÔNG trừ số lượng ở đây, chỉ kiểm tra còn hàng
             $this->cartModel->add($userId, $pid, $p_name, $p_price, $p_qty, $p_image);
             return ['added to cart!'];
         }
