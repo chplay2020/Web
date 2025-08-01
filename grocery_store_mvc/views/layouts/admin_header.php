@@ -28,7 +28,7 @@ if (isset($message)) {
          <a href="admin_orders.php">orders</a> <!-- Quản lý đơn hàng -->
          <a href="admin_users.php">users</a> <!-- Quản lý người dùng -->
          <a href="admin_contacts.php">messages</a> <!-- Tin nhắn khách hàng -->
-         <a href="sync_database.php">sync DB</a> <!-- Đồng bộ database -->
+         <!-- <a href="sync_database.php">sync DB</a> Đồng bộ database -->
       </nav>
 
       <!-- Icons cho mobile menu và user profile -->
