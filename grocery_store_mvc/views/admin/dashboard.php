@@ -73,6 +73,12 @@
             <a href="admin_contacts.php" class="btn">see messages</a>
          </div>
 
+         <div class="box">
+            <h3>🔄</h3>
+            <p>database sync</p>
+            <a href="sync_database.php" class="btn">sync database</a>
+         </div>
+
       </div>
 
    </section>

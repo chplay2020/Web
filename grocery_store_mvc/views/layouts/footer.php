@@ -19,7 +19,7 @@
          <h3>contact info</h3>
          <p> <i class="fas fa-phone"></i> +123-456-7890 </p>
          <p> <i class="fas fa-phone"></i> +111-222-3333 </p>
-         <p> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </p>
+         <p> <i class="fas fa-envelope"></i> haha@gmail.com </p>
          <p> <i class="fas fa-map-marker-alt"></i> mumbai, india - 400104 </p>
       </div>
       <div class="box">
