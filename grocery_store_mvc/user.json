@@ -1,0 +1,34 @@
+[
+  {
+    "id": 56,
+    "name": "Admin",
+    "email": "admin3@gmail.com",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "user_type": "admin",
+    "image": "1315743.jpg"
+  },
+  {
+    "id": 57,
+    "name": "Admin",
+    "email": "admin@gmail.com",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "user_type": "admin",
+    "image": "default.jpg"
+  },
+  {
+    "id": 66,
+    "name": "haha",
+    "email": "haha@gmail.com",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "user_type": "user",
+    "image": "pexels-pixabay-2156.jpg"
+  },
+  {
+    "id": 77,
+    "name": "haha2",
+    "email": "haha2@gmail.com",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "user_type": "user",
+    "image": "default.jpg"
+  }
+]

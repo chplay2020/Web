@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Fresh Apple",
+    "category": "fruits",
+    "details": "Sweet and crispy red apples from local farms",
+    "price": 3,
+    "image": "apple.png",
+    "quantity": 100
+  },
+  {
+    "id": 2,
+    "name": "Banana Bundle",
+    "category": "fruits",
+    "details": "Fresh yellow bananas rich in potassium",
+    "price": 2,
+    "image": "banana.png",
+    "quantity": 119
+  },
+  {
+    "id": 3,
+    "name": "Green Broccoli",
+    "category": "vegitables",
+    "details": "Fresh organic broccoli packed with nutrients",
+    "price": 4,
+    "image": "broccoli.png",
+    "quantity": 79
+  },
+  {
+    "id": 4,
+    "name": "Fresh Chicken",
+    "category": "meat",
+    "details": "Premium quality fresh chicken meat",
+    "price": 8,
+    "image": "chicken.png",
+    "quantity": 49
+  },
+  {
+    "id": 5,
+    "name": "Salmon Fish",
+    "category": "fish",
+    "details": "Fresh salmon fish rich in omega-3",
+    "price": 12,
+    "image": "salmon fish.png",
+    "quantity": 60
+  },
+  {
+    "id": 6,
+    "name": "Red Tomato",
+    "category": "vegitables",
+    "details": "Juicy red tomatoes perfect for cooking",
+    "price": 3,
+    "image": "tomato.png",
+    "quantity": 90
+  },
+  {
+    "id": 7,
+    "name": "Orange Carrot",
+    "category": "vegitables",
+    "details": "Fresh carrots loaded with vitamin A",
+    "price": 2,
+    "image": "carrot.png",
+    "quantity": 70
+  },
+  {
+    "id": 8,
+    "name": "Green Grapes",
+    "category": "fruits",
+    "details": "Sweet seedless green grapes",
+    "price": 5,
+    "image": "green grapes.png",
+    "quantity": 110
+  },
+  {
+    "id": 9,
+    "name": "Beef Steak",
+    "category": "meat",
+    "details": "Premium quality beef steak",
+    "price": 15,
+    "image": "beaf steak.png",
+    "quantity": 40
+  },
+  {
+    "id": 24,
+    "name": "Fresh Strawberry",
+    "category": "fruits",
+    "details": "yummy yummy=))",
+    "price": 6,
+    "image": "strawberry.png",
+    "quantity": 95
+  }
+]
