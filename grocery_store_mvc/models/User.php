@@ -30,8 +30,9 @@ class User
     // Tạo người dùng mới
     public function create($data)
     {
-        $stmt = $this->db->prepare("INSERT INTO `users` (name, email, password, user_type) VALUES (?, ?, ?, ?)");
-        return $stmt->execute([$data['name'], $data['email'], $data['password'], $data['user_type']]);
+        $image = isset($data['image']) ? $data['image'] : 'default_pic.png';
+        $stmt = $this->db->prepare("INSERT INTO `users` (name, email, password, image, user_type) VALUES (?, ?, ?, ?, ?)");
+        return $stmt->execute([$data['name'], $data['email'], $data['password'], $image, $data['user_type']]);
     }
 
     // Cập nhật thông tin cơ bản của người dùng

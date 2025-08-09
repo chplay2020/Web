@@ -51,7 +51,7 @@ class AuthController extends Controller
                         $this->redirect('admin_page');
                     } elseif ($user['user_type'] == 'user') {
                         $_SESSION['user_id'] = $user['id'];
-                        $this->redirect('/');
+                        $this->redirect('home');
                     } else {
                         $message[] = 'Invalid user type!';
                     }
@@ -80,6 +80,43 @@ class AuthController extends Controller
             $pass = $_POST['pass'];
             $cpass = $_POST['cpass'];
 
+            // Xử lý upload hình ảnh
+            $image = 'default_pic.png'; // Ảnh mặc định
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+                $uploadedImage = $_FILES['image']['name'];
+                $imageSize = $_FILES['image']['size'];
+                $imageTmpName = $_FILES['image']['tmp_name'];
+
+                // Kiểm tra định dạng file
+                $allowedExtensions = ['jpg', 'jpeg', 'png'];
+                $imageExtension = strtolower(pathinfo($uploadedImage, PATHINFO_EXTENSION));
+
+                if (in_array($imageExtension, $allowedExtensions)) {
+                    if ($imageSize <= 2000000) { // 2MB
+                        // Tạo tên file unique
+                        $image = $this->sanitize($email) . '_' . time() . '.' . $imageExtension;
+                        $imageFolder = 'uploaded_img/' . $image;
+
+                        // Tạo thư mục nếu chưa tồn tại
+                        if (!is_dir('uploaded_img')) {
+                            mkdir('uploaded_img', 0777, true);
+                        }
+
+                        // Upload file
+                        if (!move_uploaded_file($imageTmpName, $imageFolder)) {
+                            $message[] = 'Failed to upload image!';
+                            $image = 'default_pic.png';
+                        }
+                    } else {
+                        $message[] = 'Image size too large! Maximum 2MB allowed.';
+                        $image = 'default_pic.png';
+                    }
+                } else {
+                    $message[] = 'Invalid image format! Only JPG, JPEG, PNG allowed.';
+                    $image = 'default_pic.png';
+                }
+            }
+
             // Kiểm tra tính hợp lệ của dữ liệu
             if ($pass !== $cpass) {
                 $message[] = 'Confirm password not matched!';
@@ -97,6 +134,7 @@ class AuthController extends Controller
                         'name' => $name,
                         'email' => $email,
                         'password' => $hashedPass,
+                        'image' => $image,
                         'user_type' => 'user' // Mặc định là user thường
                     ];
 

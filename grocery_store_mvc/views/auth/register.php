@@ -32,12 +32,13 @@
 
    <section class="form-container">
 
-      <form action="" method="POST">
+      <form action="" method="POST" enctype="multipart/form-data">
          <h3>register now</h3>
          <input type="text" name="name" class="box" placeholder="enter your name" required>
          <input type="email" name="email" class="box" placeholder="enter your email" required>
          <input type="password" name="pass" class="box" placeholder="enter your password" required>
          <input type="password" name="cpass" class="box" placeholder="confirm your password" required>
+         <input type="file" name="image" class="box" accept="image/jpg,image/jpeg,image/png">
          <input type="submit" value="register now" class="btn" name="submit">
          <p>already have an account? <a href="login.php">login now</a></p>
       </form>

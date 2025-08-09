@@ -53,9 +53,9 @@ Mở file `core/Database.php` và cập nhật thông tin kết nối:
 
 ```php
 // Trong file core/Database.php, dòng 14-17
-$db_host = "localhost";      // Host database
-$db_name = "shop_db";        // Tên database
-$db_user = "root";           // Username MySQL
+$db_host = "";      // Host database
+$db_name = "";        // Tên database
+$db_user = "";           // Username MySQL
 $db_pass = "";               // Password MySQL (mặc định XAMPP để trống)
 ```
 

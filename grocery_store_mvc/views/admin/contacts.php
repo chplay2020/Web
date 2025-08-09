@@ -35,7 +35,7 @@
                   <p> number : <span><?= htmlspecialchars($message['number']); ?></span> </p>
                   <p> email : <span><?= htmlspecialchars($message['email']); ?></span> </p>
                   <p> message : <span><?= htmlspecialchars($message['message']); ?></span> </p>
-                  <a href="admin_contacts.php?delete=<?= $message['id']; ?>" onclick="return confirm('delete this message?');" class="delete-btn">delete</a>
+                  <a href="?page=admin_contacts&delete=<?= $message['id']; ?>" onclick="return confirm('delete this message?');" class="delete-btn">delete</a>
                </div>
          <?php
             }

@@ -23,19 +23,32 @@
 
       <h1 class="title">user accounts</h1>
 
+      <?php
+      // Hiển thị thông báo nếu có
+      if (isset($message) && !empty($message)) {
+         foreach ($message as $msg) {
+            echo '<div class="message">' . htmlspecialchars($msg) . '</div>';
+         }
+      }
+      ?>
+
       <div class="box-container">
 
          <?php
          if (!empty($users)) {
             foreach ($users as $user) {
          ?>
-               <div class="box" style="<?php if ($user['id'] == $adminId) { echo 'display:none'; } ?>">
+               <div class="box" style="<?php if ($user['id'] == $adminId) {
+                                          echo 'display:none';
+                                       } ?>">
                   <img src="uploaded_img/<?= htmlspecialchars($user['image']); ?>" alt="">
                   <p> user id : <span><?= htmlspecialchars($user['id']); ?></span></p>
                   <p> username : <span><?= htmlspecialchars($user['name']); ?></span></p>
                   <p> email : <span><?= htmlspecialchars($user['email']); ?></span></p>
-                  <p> user type : <span style="color:<?php if ($user['user_type'] == 'admin') { echo 'orange'; } ?>"><?= htmlspecialchars($user['user_type']); ?></span></p>
-                  <a href="/admin_users?delete=<?= $user['id']; ?>" onclick="return confirm('delete this user?');" class="delete-btn">delete</a>
+                  <p> user type : <span style="color:<?php if ($user['user_type'] == 'admin') {
+                                                         echo 'orange';
+                                                      } ?>"><?= htmlspecialchars($user['user_type']); ?></span></p>
+                  <a href="?page=admin_users&delete=<?= $user['id']; ?>" onclick="return confirm('delete this user?');" class="delete-btn">delete</a>
                </div>
          <?php
             }

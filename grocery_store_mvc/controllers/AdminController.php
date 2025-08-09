@@ -141,10 +141,36 @@ class AdminController extends Controller
         $this->requireAdmin();
         $adminId = $_SESSION['admin_id'];
 
+        $message = [];
+
         // Xử lý xóa user
         if (isset($_GET['delete'])) {
-            $this->userModel->delete($_GET['delete']);
-            $this->redirect('admin_users');
+            $deleteUserId = $_GET['delete'];
+
+            // Kiểm tra không được xóa chính mình
+            if ($deleteUserId == $adminId) {
+                $message[] = 'You cannot delete your own account!';
+            } else {
+                // Lấy thông tin user cần xóa
+                $userToDelete = $this->userModel->getById($deleteUserId);
+
+                if ($userToDelete) {
+                    // Kiểm tra không được xóa admin khác (chỉ super admin mới được xóa admin)
+                    if ($userToDelete['user_type'] === 'admin') {
+                        $message[] = 'Cannot delete admin accounts!';
+                    } else {
+                        // Xóa user thường
+                        try {
+                            $this->userModel->delete($deleteUserId);
+                            $message[] = 'User deleted successfully!';
+                        } catch (Exception $e) {
+                            $message[] = 'Error deleting user: ' . $e->getMessage();
+                        }
+                    }
+                } else {
+                    $message[] = 'User not found!';
+                }
+            }
         }
 
         $type = $_GET['type'] ?? 'all';
@@ -161,9 +187,11 @@ class AdminController extends Controller
         } else {
             $users = $allUsers;
         }
+
         $this->view('admin/users', [
             'users' => $users,
-            'adminId' => $adminId
+            'adminId' => $adminId,
+            'message' => $message
         ]);
     }
 
@@ -171,16 +199,39 @@ class AdminController extends Controller
     {
         $this->requireAdmin();
 
+        $message = [];
+
+        // Lấy thông báo từ session nếu có
+        if (isset($_SESSION['admin_message'])) {
+            $message = $_SESSION['admin_message'];
+            unset($_SESSION['admin_message']);
+        }
+
         // Xử lý xóa tin nhắn
         if (isset($_GET['delete'])) {
-            $this->messageModel->delete($_GET['delete']);
+            $messageId = $_GET['delete'];
+
+            // Kiểm tra tính hợp lệ của ID
+            if (!empty($messageId) && is_numeric($messageId)) {
+                try {
+                    $this->messageModel->delete($messageId);
+                    $_SESSION['admin_message'] = ['Message deleted successfully!'];
+                } catch (Exception $e) {
+                    $_SESSION['admin_message'] = ['Error deleting message: ' . $e->getMessage()];
+                }
+            } else {
+                $_SESSION['admin_message'] = ['Invalid message ID!'];
+            }
+
+            // Redirect để tránh resubmit khi refresh trang
             $this->redirect('admin_contacts');
         }
 
         $messages = $this->messageModel->getAll();
 
         $this->view('admin/contacts', [
-            'messages' => $messages
+            'messages' => $messages,
+            'message' => $message
         ]);
     }
 
